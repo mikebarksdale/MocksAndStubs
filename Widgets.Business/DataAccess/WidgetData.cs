@@ -17,7 +17,7 @@ namespace Widgets.Business.DataAccess
     {
         public IEnumerable<WidgetModel> GetWidgets()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
 
             yield return new WidgetModel
             {

@@ -59,10 +59,7 @@
     <Compile Include="MoqTests\MoqTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RhinoMocksTests\" />
-    <Folder Include="SimpleTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
