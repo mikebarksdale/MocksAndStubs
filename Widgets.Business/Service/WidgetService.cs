@@ -63,6 +63,11 @@ namespace Widgets.Business.Service
             };
         }
 
+        public void Boom()
+        {
+            throw new Exception("bwahahahahaha");
+        }
+
         private void LoadCache(IEnumerable<WidgetModel> widgets)
         {
             widgets.ToList().ForEach(w => _widgetCache.Add(w));

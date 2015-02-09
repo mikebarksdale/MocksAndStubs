@@ -8,5 +8,6 @@ namespace Widgets.Business.Service
         IEnumerable<WidgetModel> GetAllWidgets();
         WidgetModel GetWidget(int widgetId);
         ReceiptModel PurchaseWidgets(IEnumerable<WidgetModel> widgets, string paymentType, decimal amount);
+        void Boom();
     }
 }

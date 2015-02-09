@@ -37,14 +37,15 @@ namespace Widgets.Tests.MoqTests
         [TestMethod]
         public void WidgetNullIfNotFound()
         {
-            //stub data
-            var mockData = new Mock<IWidgetData>();
-            mockData.Setup(d => d.GetWidgets()).Returns(_mockWidgets);
+            //arrange
+            var mockData = GetStubData();
 
             var service = new WidgetService(mockData.Object);
 
+            //act
             var widget = service.GetWidget(5);
 
+            //assert
             Assert.IsNull(widget);
         }
 
@@ -100,16 +101,28 @@ namespace Widgets.Tests.MoqTests
         [TestMethod]
         public void BuyWidgetsAndDetermineTaxCalculation()
         {
+            //arrange
             var mockData = GetStubData();
             var service = new WidgetService(mockData.Object);
 
             var widgets = service.GetAllWidgets();
 
             var widgetsToBuy = widgets.Take(2).ToList();
-
+            
+            //act
             var receiptModel = service.PurchaseWidgets(widgetsToBuy, "cash", widgetsToBuy.Sum(w => w.Price));
 
             Assert.IsTrue(widgetsToBuy.Sum(w => w.Price) * 0.07m == receiptModel.Tax);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof (Exception))]
+        public void TestTheBoom()
+        {
+            var mockData = GetStubData();
+            var service = new WidgetService(mockData.Object);
+
+            service.Boom();
         }
 
         private Mock<IWidgetData> GetStubData()
@@ -118,5 +131,7 @@ namespace Widgets.Tests.MoqTests
             mockData.Setup(d => d.GetWidgets()).Returns(_mockWidgets);
             return mockData;
         }
+
+
     }
 }
